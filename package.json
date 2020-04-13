@@ -1,6 +1,6 @@
 {
   "name": "roll20-show-avatar",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Exposes a Character Avatar URL via chat command in the [Roll20](https://roll20.net/) VTT application.",
   "main": "show-avatar.js",
   "scripts": {
