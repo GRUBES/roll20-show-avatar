@@ -8,9 +8,9 @@
  * @license MIT
  */
 
-import {version} from "../package.json";
-
 const COMMAND = "!show-avatar";
+
+const SPEAKER = "show-avatar";
 
 /**
  * Sends the Avatar Image of the given Character to Roll20 chat
@@ -21,23 +21,31 @@ const COMMAND = "!show-avatar";
  * @returns {void}
  */
 function showAvatar(id) {
-    if (!id) {
+    let character = getCharacterData(id);
+
+    if (!character.url) {
+        sendChat(SPEAKER, "Avatar not found. Make sure the ID provided was correct and the" +
+            "selected Character has an Avatar Image.");
         return;
+    }
+
+    sendChat(character.name || SPEAKER, `[Image](${character.url}.png)`)
+}
+
+function getCharacterData(id) {
+    if (!id) {
+        return {};
     }
 
     let character = getObj("character", id);
     if (!character) {
-        return;
+        return {};
     }
 
     let url = character.get("avatar");
     let name = character.get("name");
 
-    if (!(url && name)) {
-        return;
-    }
-
-    sendChat(name, `[Image](${url}.png)`)
+    return {name, url};
 }
 
 function route(msg) {
@@ -74,6 +82,6 @@ function execute(cmd, input) {
 
 on("chat:message", route);
 on("ready", () => {
-    log(`show-avatar ${version} loaded.`);
+    log(`show-avatar loaded.`);
 });
 
