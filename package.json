@@ -1,0 +1,20 @@
+{
+  "name": "roll20-show-avatar",
+  "version": "0.1.0",
+  "description": "Exposes a Character Avatar URL via chat command in the [Roll20](https://roll20.net/) VTT application.",
+  "main": "show-avatar.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "version": "npm run build && git add -A dist",
+    "postversion": "git push && git push --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:GRUBES/roll20-show-avatar.git"
+  },
+  "keywords": [
+    "roll20"
+  ],
+  "author": "Draico Dorath",
+  "license": "MIT"
+}
